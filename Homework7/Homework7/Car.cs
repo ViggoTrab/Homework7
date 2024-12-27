@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,30 +16,19 @@ namespace HW7
         private int _Year;
         private int _Mileage;
 
-        public Car()
+        public Car(string brand, string model, int year, int mileage)
         {
-            Console.Write("Enter the brand of the car: ");
-            _Brand = Console.ReadLine();
-
-            Console.Write("Enter the model of the car: ");
-            _Model = Console.ReadLine();
-
-            Console.Write("Enter the year of the car: ");
-            _Year = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter the mileage of the car: ");
-            _Mileage = int.Parse(Console.ReadLine());
+            _Brand = brand;
+            _Model = model;
+            _Year = year;
+            _Mileage = mileage;
         }
 
-        public void Drive()
+        public void Drive(int kilometers)
         {
-            Console.Write("Enter the number of kilometers you have driven: ");
-            Console.WriteLine();
+            Console.WriteLine("Update in mileage.");
 
-            if (int.TryParse(Console.ReadLine(), out int kilometers) && kilometers > 0)
-            {
-                _Mileage += kilometers;
-            }
+            _Mileage += kilometers;
         }
 
         public void DisplayCarInfo()

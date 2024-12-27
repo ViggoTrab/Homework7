@@ -15,37 +15,33 @@ namespace HW7
         private int _Pages;
         private int _CurrentPage = 0;
 
-        public Book()
+        public Book(string title, string author, int pages)
         {
-            Console.Write("Enter the title of the book: ");
-            _Title = Console.ReadLine();
-
-            Console.Write("Enter the author of the book: ");
-            _Author = Console.ReadLine();
-
-            Console.Write("Enter the amount of pages of the book: ");
-            _Pages = int.Parse(Console.ReadLine());
-
+            _Title = title;
+            _Author = author;
+            _Pages = pages;
         }
 
-        public void Read()
+        public void Read(int pagesToRead)
         {
-            Console.Write("Enter the number of pages you have read: ");
-            Console.WriteLine();
+            Console.WriteLine("Progress in reading.");
 
-            int PagesToRead;
-
-            if (int.TryParse(Console.ReadLine(), out PagesToRead) && PagesToRead > 0)
+            if (pagesToRead > 0)
             {
-                _CurrentPage += PagesToRead;
+                _CurrentPage += pagesToRead;
 
                 if (_CurrentPage > _Pages)
                 {
                     _CurrentPage = _Pages;
-                    Console.WriteLine("You have most likely finished the book already");
+                    Console.WriteLine("You have most likely finished the book already.");
                 }
             }
+            else
+            {
+                Console.WriteLine("Please enter a valid positive number for pages.");
+            }
         }
+
         public void DisplayProgress()
         {
             Console.WriteLine($"Reading '{_Title}' by {_Author}: {_CurrentPage}/{_Pages} pages read");
